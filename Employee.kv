@@ -1,0 +1,147 @@
+
+<Test>:
+    do_default_tab:False
+    TabbedPanelItem:
+        text: 'HOME'
+        font_size:13
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgb: .6, .6, .6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: 'bg.jpg'
+
+            Label:
+                text:'Employee View'
+                font_size:50
+
+
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'bottom'
+                Button:
+                    background_color: 0,0,0,0
+                    id:mainscreen
+                    text: 'Logout'
+                    size_hint: None,None
+                    size: 100, 50
+                    on_press:root.new()
+                    on_release: root.new1()
+    TabbedPanelItem:
+        text:'Insert Employee'
+        font_size:13
+        BoxLayout:
+            orientation:'vertical'
+            canvas.before:
+                Color:
+                    rgb: .6, .6, .6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: 'bg.jpg'
+            Label:
+                text:"Insert Employee Record"
+                font_size:45
+            Label:
+                text:"Enter Id"
+            TextInput:
+                multiline:False
+                font_size:20
+                id:ID
+                write_tab: False
+                size_hint: 0.34, 0.7
+                pos_hint: {'center_x': 0.5}
+            Label:
+                text:"Enter Name"
+                pos:450,300
+            TextInput:
+                multiline:False
+                font_size:20
+                id:EmpName
+                write_tab: False
+                size_hint: 0.34, 0.7
+                pos_hint: {'center_x': 0.5}
+            Label:
+                text:"Enter Phone Number"
+                pos:450,300
+            TextInput:
+                multiline:False
+                font_size:20
+                id:Pno
+                write_tab: False
+                size_hint: 0.34, 0.7
+                pos_hint: {'center_x': 0.5}
+            Label:
+                text:"Enter Salary"
+            TextInput:
+                multiline:False
+                font_size:20
+                id:Salary
+                write_tab: False
+                size_hint: 0.34, 0.7
+                pos_hint: {'center_x': 0.5}
+            Label:
+                text:"Enter Date of Joining"
+
+            TextInput:
+                multiline:False
+                font_size:20
+                id:Date
+                write_tab: False
+                size_hint: 0.34, 0.7
+                pos_hint: {'center_x': 0.5}
+            Label:
+                size_hint_y: 0.3
+            Button:
+                text:"Confirm"
+                id:insert_id
+                size_hint: 0.2, 0.7
+                pos_hint: {'center_x': 0.5}
+                on_press: root.insert_emp(ID.text, EmpName.text, Pno.text, Salary.text, Date.text)
+    TabbedPanelItem:
+        id:tb
+        text: 'View Employee'
+        font_size:13
+        on_press: root.view_emp()
+    TabbedPanelItem:
+        text: 'Delete Employee'
+        font_size:13
+        BoxLayout:
+            orientation:'vertical'
+            canvas.before:
+                Color:
+                    rgb: .6, .6, .6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                    source: 'bg.jpg'
+            Label:
+                text:"Delete Employee Record"
+                font_size:45
+            Label:
+                text:"Enter Employee ID to remove data"
+                font_size:25
+
+            TextInput:
+                multiline:False
+                font_size:20
+                id:ID_to_remove
+                write_tab: False
+                size:200,45
+                size_hint: 0.2, 0.3
+                pos_hint: {'center_x': 0.5}
+            Label:
+                size_hint_y: 0.2
+            Button:
+                text:"Confirm"
+                id:delete_id
+                size_hint: 0.2, 0.3
+                size:200,45
+                pos_hint: {'center_x': 0.5}
+                on_press: root.del_emp(ID_to_remove.text)
+            Label:
+
+
+

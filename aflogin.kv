@@ -1,0 +1,26 @@
+
+<Afterlogin>:
+    name: 'Afterlogin'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.jpg'
+
+
+        Button:
+            on_release:root.manager.current='mainscreen'
+            text: 'Customers & Orders'
+            font_size: 30
+            pos_hint:{'x':.3, 'y':.6}
+            size_hint:.4,.1
+        Button:
+            on_release:root.manager.current='TabbedScreen'
+            text: 'Employees'
+            font_size: 30
+            pos_hint:{'x':.3, 'y':.4}
+            size_hint:.4,.1
+

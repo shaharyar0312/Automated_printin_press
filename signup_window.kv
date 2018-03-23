@@ -1,0 +1,66 @@
+
+<signupView>:
+
+    FloatLayout:
+        orientation:'vertical'
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.jpg'
+        Label:
+            text: "Automated Printing Press"
+            font_size: 50
+            size_hint:.2,.1
+            pos_hint:{'x':.4, 'y':.9}
+        Label:
+            text:"Username(>4)"
+            pos_hint:{'x':-.3, 'y':.13}
+        TextInput:
+            multiline:False
+            font_size:20
+            id:username
+            write_tab: False
+            size_hint:.3,0.07
+            pos_hint:{'x':.4, 'y':.6}
+
+        Label:
+            text:"Password(>4)"
+            pos_hint:{'x':-.3, 'y':.03}
+        TextInput:
+            multiline:False
+            font_size:20
+            id:password
+            password:True
+            write_tab: False
+            size:200,45
+            size_hint:.3,0.07
+            pos_hint:{'x':.4, 'y':.5}
+        Label:
+            text:"Phone Number"
+            pos_hint:{'x':-.3, 'y':-.07}
+        TextInput:
+            multiline:False
+            font_size:20
+            id:Aphone_no
+            write_tab: False
+            size:200,45
+            size_hint:.3,0.07
+            pos_hint:{'x':.4, 'y':.4}
+        Button:
+            text:"Signup"
+            size_hint: 0.2, 0.3
+            pos_hint:{'x':.43, 'y':0.2}
+            size_hint:.25,.1
+            on_release:root.validate1(username.text, password.text, Aphone_no.text)
+        Button:
+            text:"Already have an account"
+            size_hint: .09,.08
+            id:want_login
+            pos_hint:{'x':.5, 'y':0.03}
+            background_color: 0,0,0,0
+            on_press: root.want1()
+            on_release: root.leave1()
+            on_press:root.manager.current='loginView'

@@ -1,0 +1,447 @@
+
+<MainScreen>:
+    name: 'mainscreen'
+    id:ms
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.jpg'
+        Button:
+            on_release: app.root.current = 'Afterlogin'
+            text: '<< Back'
+            font_size: 20
+            pos_hint:{'x':.0, 'y':.9}
+            size_hint:.2,.1
+        Button:
+            on_release: app.root.current = 'Newcust'
+            text: 'New Customer'
+            font_size: 30
+            pos_hint:{'x':.3, 'y':.8}
+            size_hint:.4,.1
+
+        Button:
+            on_release:root.manager.current = 'Neworder'
+            text: 'New Order'
+            font_size: 30
+            pos_hint:{'x':.3, 'y':.65}
+            size_hint:.4,.1
+        Button:
+            on_release: root.view1()
+            text: 'View Customers'
+            id:viewbtn
+            font_size: 30
+            pos_hint:{'x':.3, 'y':.5}
+            size_hint:.4,.1
+        Button:
+            on_release: root.view2()
+            text: 'View Orders'
+            id:vior
+            font_size: 30
+            pos_hint:{'x':.3, 'y':.35}
+            size_hint:.4,.1
+        Button:
+            on_release: root.manager.current = 'Bill1'
+            text: 'Generate Bill'
+            id:g_bill
+            font_size: 30
+            pos_hint:{'x':.3, 'y':0.2}
+            size_hint:.4,.1
+        Label:
+            size_hint:.4,.1
+            pos_hint:{'x':.3, 'y':0}
+
+<new_cust>:
+    name: 'Newcust'
+    text:'Insert Customer'
+    font_size:13
+    BoxLayout:
+        orientation:'vertical'
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.jpg'
+        Button:
+            text:"<< Back"
+            id:backtohome1
+            size_hint: .178, 0.7
+            size:250,45
+            on_release:
+                root.manager.current= 'mainscreen'
+        Label:
+            text:"Insert Customer Record"
+            font_size:45
+        Label:
+            text:"Enter Customer Id"
+        TextInput:
+            multiline:False
+            font_size:20
+            id:custid
+            write_tab: False
+            size_hint: 0.34, 0.6
+            pos_hint: {'center_x': 0.5}
+        Label:
+            text:"Enter Customer Name"
+            pos:450,300
+        TextInput:
+            multiline:False
+            font_size:20
+            id:custname
+            write_tab: False
+            size_hint: 0.34, 0.6
+            pos_hint: {'center_x': 0.5}
+        Label:
+            text:"Enter Phone Number"
+            pos:450,300
+        TextInput:
+            multiline:False
+            font_size:20
+            id:p_no
+            write_tab: False
+            size_hint: 0.34, 0.6
+            pos_hint: {'center_x': 0.5}
+
+        Label:
+            size_hint_y: 0.3
+        Button:
+            text:"Confirm"
+            id:insert_cust
+            size_hint: 0.2, 0.7
+            pos_hint: {'center_x': 0.5}
+            on_press: root.new_cus_to_order(custid.text, custname.text, p_no.text  )
+        Label:
+            size_hint_y: 0.3
+<new_order>:
+    name: 'Neworder'
+    text: 'Insert New Order'
+    font_size: 13
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.jpg'
+        GridLayout:
+            rows:3
+            FloatLayout:
+                orientation:'horizontal'
+                Button:
+                    text: "Back to home"
+                    id: backtohome3
+                    size_hint: .187, 0.3
+                    pos_hint:{'x':0, 'y':.7}
+                    on_release:
+                        root.manager.current = 'mainscreen'
+                Label:
+                    text: "Insert Order's Record"
+                    font_size: 50
+                    size_hint: .178, 0.9
+                    pos_hint:{'x':.5, 'y':.41}
+            GridLayout:
+                cols:3
+                FloatLayout:
+                    Label:
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.05, 'y':1.01}
+                        text:"Order Id"
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:orid
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.5, 'y':1.0}
+                    Label:
+                        text:"Order Name"
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.05, 'y':.81}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:orname
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.5, 'y':.8}
+                    Label:
+                        text:"Order Date"
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.05, 'y':.61}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:ordate
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.5, 'y':.6}
+                    Label:
+                        text:"Date of completion"
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.05, 'y':.41}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:ordatecomplete
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.5, 'y':.4}
+                    Label:
+                        text:"Date of payment"
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.05, 'y':.21}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:ordatepay
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.5, 'y':.2}
+                FloatLayout:
+                    Label:
+                        text:'Material'
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.02, 'y':1.01}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:ormaterial
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.4, 'y':1.0}
+                    Label:
+                        text:'Front Color qty'
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.02, 'y':.81}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:fcolor
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.4, 'y':.8}
+
+                    Label:
+                        text:'Back Color qty'
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.02, 'y':.61}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:bcolor
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.4, 'y':.6}
+
+                    Label:
+                        text:'Quantity(kg)'
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.02, 'y':.41}
+                    TextInput:
+                        multiline:False
+                        font_size:20
+                        id:ordqty
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.4, 'y':.4}
+
+
+                    Label:
+                        text:'Price/kg'
+                        size_hint:  .5, 0.1
+                        pos_hint:{'x':.02, 'y':.21}
+                    TextInput:
+                        id:ordprice
+                        multiline:False
+                        font_size:20
+                        write_tab: False
+                        size_hint: .5, 0.17
+                        pos_hint:{'x':.4, 'y':.2}
+
+            FloatLayout:
+                Label:
+                    text:'Customer ID'
+                    size_hint:  .5, 0.1
+                    pos_hint:{'x':.1, 'y':.93}
+                TextInput:
+                    id:or_cus_id
+                    multiline:False
+                    font_size:20
+                    write_tab: False
+                    size_hint: .28, 0.17
+                    pos_hint:{'x':.4, 'y':.9}
+                Button:
+                    text: "Confirm"
+                    id: orbutton
+                    font_size:30
+                    size_hint: .3, 0.3
+                    pos_hint:{'x':0.4, 'y':.3}
+                    on_press: root.ins_order(orid.text, orname.text, ordate.text, ordatecomplete.text, ordatepay.text, ormaterial.text, fcolor.text, bcolor.text, ordqty.text, ordprice.text,or_cus_id.text)
+                    on_release:
+
+<bill1>:
+    name: 'Bill1'
+    FloatLayout:
+        orientation:'vertical'
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.jpg'
+        Button:
+            on_release:root.manager.current = 'Exisorder'
+            text: 'Existing Order'
+            font_size: 30
+            pos_hint:{'x':.3, 'y':.5}
+            size_hint:.4,.1
+
+<Final_bill>:
+    name:'Final_bill'
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'white.jpeg'
+        orientation:'vertical'
+        BoxLayout:
+            orientation:'vertical'
+            padding:100,50,50,50
+            font_size:28
+            Button:
+                text: "Back to home"
+                id: back12
+                size_hint: .187, 0.3
+                pos_hint:{'x':0, 'y':.7}
+                on_release:
+                    root.manager.current = 'mainscreen'
+            Label:
+                text:'[b][color=3333ff]AUTOMATED PRINTING PRESS[/color][/b]'
+                font_size:30
+                markup:True
+            GridLayout:
+                spacing:2
+                cols:7
+                Label:
+                    text:'Bill Id'
+                    id:bill
+
+                Label:
+                    text:'Date'
+                    id:date1
+                Label:
+                    text:'Name'
+                    id:name
+
+                Label:
+                    text:'Order'
+                    id:order
+                Label:
+                    text:'Quantity'
+                    id:quantity
+
+                Label:
+                    text:'Price'
+                    id:price
+
+                Label:
+                    text:'Amount'
+                    id:amount
+            GridLayout:
+                spacing:2
+                cols:7
+                Label:
+
+                    id:bill
+
+                Label:
+
+                    id:date1
+                Label:
+
+                    id:name
+
+                Label:
+
+                    id:order
+                Label:
+
+                    id:quantity
+
+                Label:
+
+                    id:price
+
+                Label:
+
+                    id:amount
+            BoxLayout:
+                padding:30,30,30,30
+                Button:
+                    id:generate_bill
+                    size:200,45
+                    size_hint:0.8,1
+                    text:'Generate Bill'
+                    on_press:root.billvi()
+                    on_release:generate_bill.disabled = True
+
+<exis_order>:
+    name: 'Exisorder'
+    FloatLayout:
+        orientation:'vertical'
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.jpg'
+        Button:
+            text: "Back to home"
+            id: backtohome4
+            size_hint:.2,.1
+            pos_hint:{'x':0, 'y':.9}
+            on_release:
+                root.manager.current = 'mainscreen'
+
+
+        Label:
+            text:"Enter Order ID"
+            pos_hint:{'x':-.3, 'y':.13}
+        TextInput:
+            multiline:False
+            font_size:20
+            id:orid_for_search
+            write_tab: False
+            size_hint:.3,0.07
+            pos_hint:{'x':.4, 'y':.6}
+        Label:
+            text:"Enter today's date"
+            pos_hint:{'x':-.3, 'y':.03}
+
+        TextInput:
+            multiline:False
+            font_size:20
+            id:today_date
+            write_tab: False
+            size:200,45
+            size_hint:.3,0.07
+            pos_hint:{'x':.4, 'y':.5}
+        Button:
+            text:"Confirm"
+            id:del
+            size_hint: 0.2, 0.3
+            pos_hint:{'x':.43, 'y':0.3}
+            size_hint:.25,.1
+            on_press: root.order_id_search(orid_for_search.text, today_date.text)
+        Label:
